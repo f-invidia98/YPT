@@ -2,16 +2,38 @@ function preload(){
   // put preload code here
 }
 
+var socket;
+
 function setup() {
-  createCanvas(windowWidth*3,windowHeight*4)
-  background(0,0,0)
-  strokeWeight(5)
-  stroke(255)
-  line(0,0,width,height)
-  line(0,width,height,0)
+  createCanvas(windowWidth,windowHeight);
+  socket = io();
+
+  socket.on('mouseBroadcast', newDrawing);
+
+  function newDrawing(receivedData){
+    fill('yellow');
+    ellipse(receivedData.x, receivedData.y, 50);
+  }
+
+  fill('red');
+  background("red");
 
 }
 
 function draw() {
-  // put drawing code here
+
+}
+
+function mouseDragged(){
+  fill("white")
+  ellipse(mouseX, mouseY, 50);
+
+  var sendData = {
+    x:mouseX,
+    y:mouseY
+  }
+
+  socket.emit('mouse', sendData);
+
+
 }
