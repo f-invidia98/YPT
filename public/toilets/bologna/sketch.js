@@ -44,8 +44,8 @@ var audioCtx;
 var play;
 var mySong;
 
-var citta = "Milano";
-var cittaUrl = "milano";
+var citta = "Bologna";
+var cittaUrl = "bologna";
 var polygon_citta = []; // poligono del luogo
 
 
